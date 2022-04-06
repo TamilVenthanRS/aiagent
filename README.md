@@ -34,6 +34,7 @@ Implementing the AI agent
 Measure the performance parameters
 
 ## PROGRAM
+```python
 import random
 
 class Thing:
@@ -55,7 +56,7 @@ class Agent(Thing):
         An Agent is a subclass of Thing
     """
 
-    def _init_(self, program=None):
+    def __init__(self, program=None):
         self.alive = True
         self.performance = 0
         self.program = program
@@ -114,7 +115,7 @@ class Environment:
     Each thing has a .location slot, even though some environments may not
     need this."""
 
-    def _init_(self):
+    def __init__(self):
         self.things = []
         self.agents = []
 
@@ -190,8 +191,8 @@ class TrivialVacuumEnvironment(Environment):
     status. This serves as an example of how to implement a simple
     Environment."""
 
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
         self.status = {loc_A: random.choice(['Clean', 'Dirty']),
                        loc_B: random.choice(['Clean', 'Dirty'])}
 
@@ -221,7 +222,7 @@ class TrivialVacuumEnvironment(Environment):
         """Agents start in either location at random."""
         return random.choice([loc_A, loc_B])
         
-if _name_ == "_main_":
+if __name__ == "__main__":
     agent = TableDrivenVacuumAgent()
     environment = TrivialVacuumEnvironment()
     environment.add_thing(agent)
@@ -229,7 +230,7 @@ if _name_ == "_main_":
     environment.run(steps=10)
     print(environment.status)
     print(agent.performance)
-
+```    
 ## OUTPUT
 ![2022-04-06 2](https://user-images.githubusercontent.com/75235477/162019094-bf7194a4-df4f-4f39-978f-6f311ec0e310.jpeg)
 
